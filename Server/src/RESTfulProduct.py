@@ -75,7 +75,7 @@ class Product(RESTResource):
                 data = data[0]
                 
                 cursor = self.db.cursor()
-                cursor.execute("INSERT INTO Products (Title, Description, Brand, Store, Gtin, URL, Img_URL, Price, Currency, Category) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', %s, '%s', '%s')"% (data["title"], data["des"], data["brand"], data["store"], data["gtin"], data["url"], data["img_url"], data["price"], data["currency"], data["category"]))
+                cursor.execute("INSERT INTO Products (Title, Description, Brand, Store, Gtin, URL, Img_URL, Price, Currency, Category) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', %s, '%s', '%s')"% (data["title"], data["description"], data["brand"], data["store"], data["gtin"], data["url"], data["img_url"], data["price"], data["currency"], data["category"]))
                 self.db.commit()
             else:
                 data = tmp[0]

@@ -43,7 +43,7 @@ class GoogleAPI(BaseService):
             if "title" in product:
                 product_dict["title"] = product["title"]
             else:
-                product_dict["title"] = "None
+                product_dict["title"] = "None"
                 
             if "brand" in product:
                 product_dict["brand"] = product["brand"]    
@@ -56,7 +56,7 @@ class GoogleAPI(BaseService):
                 else:
                     product_dict["store"] = "None"
             else:
-                product_dict["store"] = "None                    
+                product_dict["store"] = "None"                  
                        
             if "gtin" in product:
                 product_dict["gtin"] = product["gtin"].lstrip('0')

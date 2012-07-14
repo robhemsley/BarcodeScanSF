@@ -36,9 +36,9 @@ class GoogleAPI(BaseService):
             product_dict = {}
             
             if "description" in product:
-                product_dict["des"] = product["description"]
+                product_dict["description"] = product["description"]
             else:
-                product_dict["des"] = None
+                product_dict["description"] = None
                 
             if "title" in product:
                 product_dict["title"] = product["title"]

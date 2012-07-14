@@ -1,4 +1,5 @@
-
+"""
+"""
 
 class HttpError(Exception):
     def __init__(self, message, code = 400):
@@ -15,4 +16,8 @@ class LookupError(HttpError):
         
 class FileError(HttpError):
     def __init__(self, message, code = 404):
+        HttpError.__init__(self, message, code)
+        
+class RestError(HttpError):
+    def __init__(self, message, code = 400):
         HttpError.__init__(self, message, code)

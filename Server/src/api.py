@@ -1,12 +1,15 @@
+"""
+"""
+
 from RESTfulProduct import Product
-import cherrypy, os, shutil
+import cherrypy
     
 class v0:
 
     def __init__(self, env, variables):
         self.env = env
         self.variables = variables
-	self.Product = Product(env, variables)    
+        self.Product = Product(env, variables)    
 
     @cherrypy.expose
     def index(self):

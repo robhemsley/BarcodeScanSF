@@ -71,7 +71,7 @@ class GoogleAPI(BaseService):
             if "link" in product:
                 product_dict["url"] = product["link"]      
             else:
-                product_dict["url"] = "None   
+                product_dict["url"] = "None"
                   
             if "inventories" in product:
                 product_dict["price"] = product["inventories"][0]["price"]    

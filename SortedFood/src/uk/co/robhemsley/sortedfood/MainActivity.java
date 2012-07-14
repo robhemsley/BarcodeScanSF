@@ -62,33 +62,15 @@ public class MainActivity extends Activity {
 			params.put("more", "data");
 			
 			AsyncHttpClient client = new AsyncHttpClient();
-			String url = "https://www.googleapis.com/shopping/search/v1/public/products?country=US&q=" + result.toString() + "&key=AIzaSyAjNzASWkwaoQ8vnQs56FTvu-MtFaNWRAM";
+			String url = "http://sorted.robhemsley.webfactional.com/API/v0/Product/UK/" + result.toString() + "/";
 			Log.e("", url);
 			client.get(url, new AsyncHttpResponseHandler() {
 			    @Override
 			    public void onSuccess(String response) {
 			    	Log.e("", response);
-			    	
-			    	
-			    	String json = 
-			                "{"
-			                    + "'title': 'Computing and Information systems',"
-			                    + "'id' : 1,"
-			                    + "'children' : 'true',"
-			                    + "'groups' : [{"
-			                        + "'title' : 'Level one CIS',"
-			                        + "'id' : 2,"
-			                        + "'children' : 'true',"
-			                        + "'groups' : [{"
-			                            + "'title' : 'Intro To Computing and Internet',"
-			                            + "'id' : 3,"
-			                            + "'children': 'false',"
-			                            + "'groups':[]"
-			                        + "}]" 
-			                    + "}]"
-			                + "}";
+			    
 			    	 // Now do the magic.
-			    	JsonData data = new Gson().fromJson(json, JsonData.class);
+			    	JsonProduct data = new Gson().fromJson(response.toString(), JsonProduct.class);
 
 			        // Show it.
 			        Log.e("CAT", data.toString());

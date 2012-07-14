@@ -79,6 +79,7 @@ class Product(RESTResource):
                 self.db.commit()
             else:
                 data = tmp[0]
+                data.pop("ID")
         
             if len(vpath) == 2:
                 return json.dumps(self._process_rest(data, ""), indent=4)

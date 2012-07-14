@@ -101,8 +101,8 @@ class Product(RESTResource):
             return {"url": data["url"]}
         elif req == "img":
             return {"img": data["img_url"]}
-        elif req == "des":
-            return {"des": data["des"]}
+        elif req == "description":
+            return {"description": data["description"]}
         elif req == "brand":
             return {"brand": data["brand"]}
         elif req == "store":

@@ -1,11 +1,16 @@
 package uk.co.robhemsley.sortedfood;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import com.biggu.barcodescanner.client.android.Intents;
+import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -63,6 +68,31 @@ public class MainActivity extends Activity {
 			    @Override
 			    public void onSuccess(String response) {
 			    	Log.e("", response);
+			    	
+			    	
+			    	String json = 
+			                "{"
+			                    + "'title': 'Computing and Information systems',"
+			                    + "'id' : 1,"
+			                    + "'children' : 'true',"
+			                    + "'groups' : [{"
+			                        + "'title' : 'Level one CIS',"
+			                        + "'id' : 2,"
+			                        + "'children' : 'true',"
+			                        + "'groups' : [{"
+			                            + "'title' : 'Intro To Computing and Internet',"
+			                            + "'id' : 3,"
+			                            + "'children': 'false',"
+			                            + "'groups':[]"
+			                        + "}]" 
+			                    + "}]"
+			                + "}";
+			    	 // Now do the magic.
+			    	JsonData data = new Gson().fromJson(json, JsonData.class);
+
+			        // Show it.
+			        Log.e("CAT", data.toString());
+			
 			    }
 			});
 			

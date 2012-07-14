@@ -38,49 +38,49 @@ class GoogleAPI(BaseService):
             if "description" in product:
                 product_dict["description"] = product["description"]
             else:
-                product_dict["description"] = None
+                product_dict["description"] = "None"
                 
             if "title" in product:
                 product_dict["title"] = product["title"]
             else:
-                product_dict["title"] = None
+                product_dict["title"] = "None
                 
             if "brand" in product:
                 product_dict["brand"] = product["brand"]    
             else:
-                product_dict["brand"] = None           
+                product_dict["brand"] = "None"           
                 
             if "author" in product:
                 if "name" in product["author"]:
                     product_dict["store"] = product["author"]["name"]
                 else:
-                    product_dict["store"] = None
+                    product_dict["store"] = "None"
             else:
-                product_dict["store"] = None                    
+                product_dict["store"] = "None                    
                        
             if "gtin" in product:
                 product_dict["gtin"] = product["gtin"].lstrip('0')
             else:
-                product_dict["gtin"] = None   
+                product_dict["gtin"] = "None"   
                   
             if "images" in product:
                 product_dict["img_url"] = product["images"][0]["link"] 
             else:
-                product_dict["img_url"] = None   
+                product_dict["img_url"] = "None"   
                        
             if "link" in product:
                 product_dict["url"] = product["link"]      
             else:
-                product_dict["url"] = None   
+                product_dict["url"] = "None   
                   
             if "inventories" in product:
                 product_dict["price"] = product["inventories"][0]["price"]    
                 product_dict["currency"] = product["inventories"][0]["currency"]
             else:
-                product_dict["price"] = None   
-                product_dict["currency"] = None   
+                product_dict["price"] = "None"   
+                product_dict["currency"] = "None"   
                 
-            product_dict["category"] = None   
+            product_dict["category"] = "None"   
                 
             output.append(product_dict)
         

@@ -67,20 +67,10 @@ class Product(RESTResource):
         
         
         try:
-            self._check_gtin(*vpath, **params)
-            test = GoogleAPI()
-            tmp = self._check_db(self._check_gtin(*vpath, **params))
-            if tmp == None:
-                data = test.get_product(self._check_country(*vpath, **params), self._check_gtin(*vpath, **params))
-                data = data[0]
-                
-                cursor = self.db.cursor()
-                cursor.execute("INSERT INTO Products (Title, Description, Brand, Store, Gtin, URL, Img_URL, Price, Currency, Category) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', %s, '%s', '%s')"% (data["title"], data["description"], data["brand"], data["store"], data["gtin"], data["url"], data["img_url"], data["price"], data["currency"], data["category"]))
-                self.db.commit()
-            else:
-                data = tmp[0]
-                data.pop("ID")
-        
+            gtin = self._check_gtin(*vpath, **params)
+            country = self._check_country(*vpath, **params)
+            data = self.process_gtin(gtin, country)
+            
             if len(vpath) == 2:
                 return json.dumps(self._process_rest(data, ""), indent=4)
             else:
@@ -132,6 +122,21 @@ class Product(RESTResource):
             return result
         else:
             return None
+        
+    def process_gtin(self, gtin, country):
+        test = GoogleAPI()
+        tmp = self._check_db(gtin)
+        if tmp == None:
+            data = test.get_product(country, gtin)
+            data = data[0]
+                
+            cursor = self.db.cursor()
+            cursor.execute("INSERT INTO Products (Title, Description, Brand, Store, Gtin, URL, Img_URL, Price, Currency, Category) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', %s, '%s', '%s')"% (data["title"], data["description"], data["brand"], data["store"], data["gtin"], data["url"], data["img_url"], data["price"], data["currency"], data["category"]))
+            self.db.commit()
+        else:
+            data = tmp[0]
+            data.pop("ID")
+        return data
         
         
     

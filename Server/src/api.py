@@ -2,6 +2,8 @@
 """
 
 from RESTfulProduct import Product
+from RESTfulFind import Find
+
 import cherrypy
     
 class v0:
@@ -10,6 +12,7 @@ class v0:
         self.env = env
         self.variables = variables
         self.Product = Product(env, variables)    
+        self.Find = Find(env, variables)
 
     @cherrypy.expose
     def index(self):

@@ -90,7 +90,7 @@ class Find(RESTResource):
     
     def _check_db(self, title):
         cursor = self.db.cursor()
-        cursor.execute("""SELECT * FROM `Recipe`, `Video` WHERE `Recipe`.`ID` = (SELECT `Recipe_ID` FROM `Ingredient` WHERE `Item_ID` = (SELECT `ID` FROM `Item` WHERE LOCATE(`Name`, "%s") > 0 LIMIT 0,1) LIMIT 0,1)"""% (title))
+        cursor.execute("""SELECT *, (SELECT `URL` FROM `Video` WHERE `Video`.`ID` = `Recipe`.`Video_ID`) as URL FROM `Recipe` WHERE `Recipe`.`ID` = (SELECT `Recipe_ID` FROM `Ingredient` WHERE `Item_ID` = (SELECT `ID` FROM `Item` WHERE LOCATE(`Name`, "%s") > 0 LIMIT 0,1) LIMIT 0,1)"""% (title))
         result = cursor.fetchall()
         return result
         

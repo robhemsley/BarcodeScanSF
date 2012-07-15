@@ -81,7 +81,7 @@ class Find(RESTResource):
                     result.pop("Timestamp")
                     output.append(result)
                 
-            return json.dumps(output, indent=4)  
+                    return json.dumps(result, indent=4)  
                     
         except Exceptions.HttpError as e:
             return json.dumps(e.message, sort_keys=True, indent=4)   

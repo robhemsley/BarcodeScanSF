@@ -71,17 +71,17 @@ class Find(RESTResource):
         
         try:
             data = params['gtin'].split(",")
+            output = []
             for gtin in data:
                 print self.Product.process_gtin(gtin, "UK")
                 results = self._check_db(self.Product.process_gtin(gtin, "UK")['Title'])
                 print results
-                print "cat"
-                output = []
                 for result in results:
                     result.pop("Timestamp")
-                    output.append(result)
+                    if result not in output:
+                        output.append(result)
                 
-                    return json.dumps(result, indent=4)  
+            return json.dumps({"recipes": output}, indent=4)  
                     
         except Exceptions.HttpError as e:
             return json.dumps(e.message, sort_keys=True, indent=4)   

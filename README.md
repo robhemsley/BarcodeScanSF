@@ -1,4 +1,4 @@
-SortedApp
+BarcodeApp
 =========
 
-Example SortedFood application using barcode scanning
+Example application using barcode scanning - test for SF
